@@ -80,13 +80,13 @@ const CreateProduct = () => {
   },[])
   return (
     <Layout title={"Dashboard -CreateProduct"}>
-        <div className='container-fluid m-3 p-3'>
+        <div className='container-fluid '>
         <div className="row">
-             <div className="col-md-3">
+             <div className="col-md-3 p-5  bg-secondary">
                 <Adminmenu/>
              </div>
-             <div className="col-md-9">
-                <h1 className='text-center text-bg-dark'> <strong>Create Product</strong></h1>
+             <div className="col-md-9 bg-dark">
+                <h1 className='text-center '> <strong style={{color:"whitesmoke"}}>Create Product</strong></h1>
                 <div classNfame="m-1 w-75">
                       <Select
                           placeholder="Select a Category"
@@ -96,26 +96,26 @@ const CreateProduct = () => {
                           onChange={(value)=>setCategory(value) }>  
                       { 
                           categories?.map((c)=>(
-                          <Option key={c._id} value={c._id}>{c.name}</Option>
+                          <Option key={c._id} value={c._id}><strong style={{color:"whitesmoke"}}>{c.name}</strong></Option>
                         ))
                       }
 
                        </Select>
-                       <div className="mb-3">
-                            <label className='btn btn-outline-secondary col-md-12'>
-                             { photo?photo.name:'upload photo'}
+                       <div className="m-3">
+                            <label className='btn btn-outline-dark col-md-12'>
+                            <h4 className='text-center '> <strong style={{color:"whitesmoke"}}> { photo?photo.name:'upload photo'}</strong></h4>
                               <input type='file' accept='image/*'  onChange={(e)=>(setPhoto(e.target.files[0]))} hidden></input>
                             </label>
                        </div>
                        <div className="mb-3">
                         {
                           photo &&(
-                            <div className="text-cneter">
+                            <div className="text-center">
                               <img 
                                  src={URL.createObjectURL(photo)}
                                  alt='Product-chehra'
                                  className='img img-responsive'  
-                                 height={"200px"}
+                                 height={"400px"}
                               />
                             </div>
                           )
@@ -175,7 +175,7 @@ const CreateProduct = () => {
                             <Option value="1">YES</Option>
                           </Select>
                        </div>
-                       <div className='mb-3'>
+                       <div className='mb-5'>
                         <button className='btn btn-primary' onClick={handleCreate}>CREATE PRODUCT</button>
 
                        </div>

@@ -39,12 +39,14 @@ const AdminOrder = () => {
   }, [auth?.token])
   return (
     <Layout>
+      <div className="container-fluid">
+
       <div className="row">
-        <div className="col-md-3">
+        <div className="col-md-3  bg-secondary p-5" style={{minHeight:"100vh"}}>
           <AdminMenu />
         </div>
-        <div className="col-md-9">
-          <h1 className='text-center'>All Orders</h1>
+        <div className="col-md-9 bg-dark">
+        <h1 className="text-center" style={{ color: "whitesmoke" }}>All Orders</h1>
           {
             allOrders?.map((o, i) => {
               return (
@@ -52,12 +54,12 @@ const AdminOrder = () => {
                   <table className="table">
                     <thead>
                       <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Buyer</th>
-                        <th scope="col">Date</th>
-                        <th scope="col">Payment</th>
-                        <th scope="col">quantity</th>
+                        <th scope="col" style={{ color: "whitesmoke" }}>#</th>
+                        <th scope="col" style={{ color: "whitesmoke" }}>Status</th>
+                        <th scope="col" style={{ color: "whitesmoke" }}>Buyer</th>
+                        <th scope="col" style={{ color: "whitesmoke" }}>Date</th>
+                        <th scope="col" style={{ color: "whitesmoke" }}>Payment</th>
+                        <th scope="col" style={{ color: "whitesmoke" }}>quantity</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -72,17 +74,17 @@ const AdminOrder = () => {
                           >
                             {
                                 status.map((s, i) => (
-                                <Option key={i} value={s}>
-                                  {s}
+                                <Option key={i} value={s} >
+                                 <h5 style={{color:"whitesmoke"}}>{s}</h5> 
                                 </Option>
                               ))
                             }
                           </Select>
                         </td>
-                        <td>{o?.buyer?.name}</td>
-                        <td>{moment(o?.createAt).fromNow()}</td>
-                        <td>{o?.payment.success ? "Success" : "Failed"}</td>
-                        <td>{o?.products?.length}</td>
+                        <td style={{ color: "whitesmoke" }}>{o?.buyer?.name}</td>
+                        <td style={{ color: "whitesmoke" }}>{moment(o?.createAt).fromNow()}</td>
+                        <td style={{ color: "whitesmoke" }}>{o?.payment.success ? "Success" : "Failed"}</td>
+                        <td style={{ color: "whitesmoke" }}>{o?.products?.length}</td>
                       </tr>
                     </tbody>
                   </table>
@@ -117,6 +119,7 @@ const AdminOrder = () => {
 
         </div>
 
+      </div>
       </div>
     </Layout>
   )

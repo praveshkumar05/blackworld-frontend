@@ -106,20 +106,22 @@ const Createcategory = () => {
 
   return (
     <Layout title={"Dashboard -CreateCategory"}>
-      <div className="container-fluid m-3 p-3">
-        <div className="row">
-          <div className="col-md-3">
+      <div className="container-fluid bg-secondary " >
+        <div className="row ">
+          <div className="col-md-3 p-sm-5" style={{minHeight:"100vh"}}>
             <Adminmenu />
           </div>
-          <div className="col-md-9 row ">
-          <h1 className='text-center text-bg-dark'> <strong>Manage Category</strong></h1>
+          <div className="col-md-9  bg-dark " >
+          <h1 className='text-center '> <strong style={{color:"whitesmoke"}}>Manage Category</strong></h1>
+          
           <div> <CaregoryForm handlesubmit={handlesubmit} value={name} setValue={setName} /> </div>
-            <div className="w-75">
+          <div className="container">
+            <div className="w-75 row">
                   <table className="table">
                     <thead>
                       <tr>
-                        <th scope="col">Name</th>
-                        <th scope="col">Action</th>
+                        <th scope="col" style={{color:"whitesmoke"}}>Name</th>
+                        <th scope="col" style={{color:"whitesmoke"}}>Action</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -127,7 +129,7 @@ const Createcategory = () => {
                               category?.map(c=>{
                                   return (                                    
                                      <tr>
-                                          <td > {c.name}</td>
+                                          <td style={{color:"whitesmoke"}}> {c.name}</td>
                                           <td > <button className="btn btn-primary" onClick={()=>{setVisible(true) ;setSelected(c);setUpdatedName(c.name) }}>edit</button></td>  
                                           <td > <button className="btn btn-danger" onClick={()=>handleDelete(c._id)}>delete</button></td>  
                                      </tr>
@@ -137,6 +139,7 @@ const Createcategory = () => {
                     </tbody>
                   </table>
               
+            </div>
             </div>
              <Modal onCancel={()=>setVisible(false)} footer={null} visible={visible} >
               <CaregoryForm  value={updatedName} setValue={setUpdatedName} handlesubmit={handleupdate} />

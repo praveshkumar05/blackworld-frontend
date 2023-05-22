@@ -3,28 +3,29 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 const Adminmenu = () => {
   return (
-    <div className="text-center bg-black" >
-        <div className="list-group">
-           <h5 >  <NavLink to="/dashboard/admin" activeClassName="active" className="nav-link">
-                       <span style={{ color:"whitesmoke" }}>Admin Panel</span>
+    <div className="text-center container " >
+        <div className="list-group ">
+           <li > 
+            <NavLink to="/dashboard/admin" activeClassName="active" className="nav-link ">
+                       <h3><strong >Admin Panel</strong></h3>
                   </NavLink>
-           </h5>
-          <l1> <NavLink to="/dashboard/admin/create-category" className="list-group-item list-group-item-action">
-                 Create Category
+           </li>
+          <l1 > <NavLink to="/dashboard/admin/create-category" className="list-group-item list-group-item-action ">
+          <h5 ><strong >Create Category</strong></h5>
                </NavLink>
           </l1>
          
-          <NavLink to="/dashboard/admin/create-product" className="list-group-item list-group-item-action">
-            Create Product
+          <NavLink to="/dashboard/admin/create-product" className="list-group-item list-group-item-action  ">
+          <h5 ><strong >Create Product</strong></h5>
           </NavLink>
-          <NavLink to="/dashboard/admin/products" className="list-group-item list-group-item-action">
-            Products
+          <NavLink to="/dashboard/admin/products" className="list-group-item list-group-item-action ">
+          <h5 ><strong >Prdoduct</strong></h5>
           </NavLink>
-          <NavLink to="/dashboard/admin/orders" className="list-group-item list-group-item-action">
-             Orderes
+          <NavLink to="/dashboard/admin/orders" className="list-group-item list-group-item-action ">
+          <h5 ><strong >Orderes</strong></h5>
           </NavLink>
-          <NavLink to="/dashboard/admin/users" className="list-group-item list-group-item-action">
-             Users
+          <NavLink to="/dashboard/admin/users" className="list-group-item list-group-item-action ">
+          <h5 ><strong >Users</strong></h5>
           </NavLink>
         </div>
     </div>

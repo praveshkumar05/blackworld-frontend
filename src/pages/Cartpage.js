@@ -11,63 +11,63 @@ import './cartpage.css'
 const Cartpage = () => {
   const [cartItem, setCartItem] = useContext(cartContext);
   const [auth] = useAuth();
-  const [clientToken,setClientToken]=useState(""); 
-  const [instance,setInstance]=useState("");
-  const [loading,setLoading]=useState(false);
+  const [clientToken, setClientToken] = useState("");
+  const [instance, setInstance] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   //get payment gatway token
-  const getToken=async()=>{
+  const getToken = async () => {
     try {
-        const {data}=await getTokenfunc();
-        // console.log(data);
-        setClientToken(data?.clientToken);
+      const { data } = await getTokenfunc();
+      // console.log(data);
+      setClientToken(data?.clientToken);
     } catch (error) {
-        console.log(error);
+      console.log(error);
     }
   }
 
-  const removecartItem=async(id)=>{
+  const removecartItem = async (id) => {
     try {
-          localStorage.removeItem("cartItem");
-          let newcartItem=cartItem.filter((c)=>(c._id!==id))
-          setCartItem(newcartItem);
-          localStorage.setItem("cartItem",JSON.stringify(newcartItem));
-      
+      localStorage.removeItem("cartItem");
+      let newcartItem = cartItem.filter((c) => (c._id !== id))
+      setCartItem(newcartItem);
+      localStorage.setItem("cartItem", JSON.stringify(newcartItem));
+
     } catch (error) {
-        console.log(error);
+      console.log(error);
     }
   }
-  const totalPrice=()=>{
+  const totalPrice = () => {
     try {
-        let total=0;
-        cartItem?.map((item)=> total=total+item.price)
-       return total.toLocaleString("en-US",{
-        style:"currency",
-        currency:"USD"
-       })
+      let total = 0;
+      cartItem?.map((item) => total = total + item.price)
+      return total.toLocaleString("en-US", {
+        style: "currency",
+        currency: "USD"
+      })
     } catch (error) {
-        console.log(error)
+      console.log(error)
     }
   }
-   const handlePayment=async()=>{
-       try {  
-        const {nonce}=await instance.requestPaymentMethod();
-        setLoading(true);
-        const {data}=await paymentfunc({nonce,cartItem});
-        setLoading(false);
-        localStorage.removeItem("cartItem");
-        setCartItem([]);
-        navigate("/dashboard/user/order")
-        toast.success("payment Completed succesfully");
-       }
-       catch (error) {
-            console.log(error)
-            setLoading(false);
-       }
-   }
-  useEffect(()=>{
+  const handlePayment = async () => {
+    try {
+      const { nonce } = await instance.requestPaymentMethod();
+      setLoading(true);
+      const { data } = await paymentfunc({ nonce, cartItem });
+      setLoading(false);
+      localStorage.removeItem("cartItem");
+      setCartItem([]);
+      toast.success("payment Completed succesfully");
+      navigate("/dashboard/user/order")
+    }
+    catch (error) {
+      console.log(error)
+      setLoading(false);
+    }
+  }
+  useEffect(() => {
     getToken();
-  },[auth?.token])
+  }, [auth?.token])
 
 
   return (
@@ -76,10 +76,10 @@ const Cartpage = () => {
         <div className="row">
           <div className="col-md-12">
             <h1 className='text-center bg-dark p-2 mb-1 '>
-              <strong style={{color:'whitesmoke'}}>{`Hello ${auth?.token && auth?.user?.name}`}</strong>
+              <strong style={{ color: 'whitesmoke' }}>{`Hello ${auth?.token && auth?.user?.name}`}</strong>
             </h1>
             <h4 className='text-center'>
-              {cartItem?.length >0
+              {cartItem?.length > 0
                 ? `you have ${cartItem.length} items in your cart ${auth?.token ? "" : "Please login to checkout"}`
                 : "Your cart is empty"
               }
@@ -87,37 +87,62 @@ const Cartpage = () => {
           </div>
         </div>
         <div className="container">
-        <div className='row'>
-          <div className="col-md-7 p-0 m-0">
-            {
-              cartItem?.map((p) => (
-                <div className="row card flex-row" key={p._id}>
-                  <div className="col-md-4">
-                    <img
-                      className="card-img-top"
-                      width={"100%"}
-                      height={"130px"}
-                      src={`${BASE_URL}/product/productPhoto/${p._id}`}
-                      alt="Card  cap"
-                    />
+          <div className='row'>
+            <div className="col-md-7 ">
+              
+              {
+                cartItem?.map((p) => (
+                  <div className="row m-3 " key={p._id}>
+                    <div className="col-md-7 ">
+                      <img
+                        className="card-img-top"
+                        width={"100%"}
+                        height={"180px"}
+                        src={`${BASE_URL}/product/productPhoto/${p._id}`}
+                        alt="Card  cap"
+                      />
+                    </div>
+                    <div className="col-md-5 justify-content-between p-3">
+                    
+                    <div className="row">
+                      
+                        <div className="col-6">
+                             <h5 className="card-title">{p.name}</h5>
+                        </div>
+                        <div className="col-6">
+                        <h5 className="card-title card-price">
+                          {p.price.toLocaleString("en-US", {
+                            style: "currency",
+                            currency: "USD",
+                          })}
+                        </h5>
+                        </div>
+
+                       
+                      </div>
+                     
+                      <div className="row">
+                            <div className="col">
+                            <p>{p.description}</p>
+                            </div>
+                           
+                      </div>
+                      
+                      <div className='row' >
+                      <button
+                        className="btn btn-danger"
+                        onClick={() => removecartItem(p._id)}
+                      >
+                        Remove
+                      </button>
+                      </div>
+                    </div>
+
                   </div>
-                  <div className="col-md-4">
-                    <h4>{p.name}</h4>
-                    <p>{p.description.substring(0,30)}</p>
-                    <h4>Price: {p.price}</h4>
-                  </div>
-                  <div className="col-md-4 cart-remove-btn">
-                    <button
-                      className="btn btn-danger"
-                      onClick={() => removecartItem(p._id)}
-                    >
-                      Remove
-                    </button>
-                  </div>
-                </div>
-               ))}
-          </div>
-          <div className="col-md-5 cart-summary ">
+                ))}
+                
+            </div>
+            <div className="col-md-5 cart-summary ">
               <h2>Cart Summary</h2>
               <p>Total | Checkout | Payment</p>
               <hr />

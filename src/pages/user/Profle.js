@@ -51,9 +51,9 @@ const Profile = () => {
   };
   return (
     <Layout>
-      <div className="container-fluid p-3 m-3">
-        <div className="row">
-          <div className="col-md-3">
+      <div className="container-fluid   ">
+        <div className="row ">
+          <div className="col-md-3 bg-secondary  p-5">
             <Usermenu />
           </div>
           <div className="col-md-9 form-container">

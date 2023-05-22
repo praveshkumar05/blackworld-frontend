@@ -5,7 +5,7 @@ const Usermenu = () => {
   return (
     <div className="text-center">
         <div class="list-group">
-           <h3 style={{ backgroundColor:"GrayText" }}> <span style={{ color:"whitesmoke" }}> <strong>User Panel</strong></span></h3>
+           <h2 > <span style={{ color:"whitesmoke" }}> <strong>User Panel</strong></span></h2>
           <l1> <NavLink to="/dashboard/user/profile" className="list-group-item list-group-item-action">
               <strong>profile</strong>
           </NavLink>

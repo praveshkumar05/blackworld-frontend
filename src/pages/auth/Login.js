@@ -14,7 +14,7 @@ const Login = () => {
     email: "",
     password: "",
   });
-  const [show,setShow]=useState(false);
+  const [show, setShow] = useState(false);
   const [auth, setAuth] = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
@@ -29,7 +29,7 @@ const Login = () => {
     const { email, password } = inputVal;
     if (email === " " || password === "") {
       toast.error("Please Fill All the Required Field");
-    } 
+    }
     else {
       const data = { email, password };
       const config = {
@@ -54,55 +54,81 @@ const Login = () => {
   return (
     <>
       <Layout>
-        <div className="form-container">
-          <form >
-            <h3 className="title text-danger text-center"> <strong >Login Form</strong></h3>
-            <div className="mb-3">
-              <label htmlFor="exampleInputEmail1" className="form-label">
-                 <strong>email address </strong>
-              </label>
-              <input
-                type="email"
-                onChange={setvalue}
-                name="email"
-                className="form-control"
-                required
-                id="exampleInputEmail1"
-              />
-            </div>
+        <div className="form-container container-fluid" style={{minHeight:"100vh"}}>
+          <div className="row">
+            <div className="col-md-4">
 
-            <div className="mb-3">
-              <label htmlFor="exampleInputPassword1" className="form-label">
-                <strong>Password</strong>
-              </label>
-              <div className="d-flex m-">
-              <input
-                type= {show?"text":"password"}
-                onChange={setvalue}
-                name="password"
-                className="form-control"
-                required
-                id="exampleInputPassword1"
-              />
-                <strong style={{width:"50x",backgroundColor:""}}  >{show? <VisibilityTwoToneIcon onClick={()=>setShow(false)}/> : <VisibilityOffTwoToneIcon onClick={()=>setShow(true)}/>}</strong>
-              
+            </div>
+            <div className="col-md-4">
+            <form >
+              <h3 className="title text-danger text-center"> <strong >Login Form</strong></h3>
+              <div className="mb-3 ">
+                <label htmlFor="exampleInputEmail1" className="form-label">
+                  <strong>email address </strong>
+                </label>
+                <input
+                  type="email"
+                  onChange={setvalue}
+                  name="email"
+                  className="form-control"
+                  required
+                  id="exampleInputEmail1"
+                  placeholder="Enter Your Email"
+                />
               </div>
-              
+
+              <div className="mb-1  form-group form-inline ">
+                <label htmlFor="exampleInputEmail1" className="form-label">
+                  <strong>email address </strong>
+                </label>
+                 <div className="d-flex">
+                 <input
+                    type={show ? "text" : "password"}
+                    onChange={setvalue}
+                    name="password"
+                    className="form-control"
+                    required
+                    id="exampleInputPassword1"
+                    placeholder="password"
+                  />
+                  
+                  <span
+                    style={{
+                      backgroundColor: "whitesmoke",
+                      borderRadius: "8px",
+                      marginLeft: "8px",
+                      padding: "6px",
+                    }}
+                  >
+                    {show ? (
+                      <VisibilityTwoToneIcon onClick={() => setShow(false)} />
+                    ) : (
+                      <VisibilityOffTwoToneIcon onClick={() => setShow(true)} />
+                    )}
+                  </span>
+                 </div>
+                </div>
+              <div>
+
+                <h6> <NavLink to="/resetpassword" style={{ textDecoration: "none" }}> ForGot Password?</NavLink> </h6>
+
+              </div>
+              <button
+                type="submit"
+                className="btn btn-primary"
+                onClick={submitData}
+              >
+                LOGIN
+              </button>
+
+            </form>
             </div>
-            <div>
-
-              <h6> <NavLink to="/resetpassword" style={{ textDecoration: "none" }}> ForGot Password?</NavLink> </h6>
+            <div className="col-md-4">
 
             </div>
-            <button
-              type="submit"
-              className="btn btn-primary"
-              onClick={submitData}
-            >
-              LOGIN
-            </button>
 
-          </form>
+           
+          </div>
         </div>
       </Layout>
     </>

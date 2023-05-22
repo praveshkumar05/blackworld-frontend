@@ -1,6 +1,6 @@
 .banner-img {
     width:100%;
-    height: 400px;
+    height: 500px;
   }
   
   .home-page h1 {
@@ -39,7 +39,7 @@
   }
   
   .home-page .card img:hover {
-    transform: scale(1.2);
+    transform: scale(0.9);
   }
   
   .home-page .card-img-top {
@@ -76,11 +76,7 @@
     color: yellowgreen;
     font-weight: bold;
     font-size: 20px !important;
-  } */
-   .row {
-    display: flex;
-    height: 100vh;
   } 
-  
+   
 
   

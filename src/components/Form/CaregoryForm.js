@@ -1,21 +1,21 @@
-import React, { useState } from "react";
+import React from "react";
 
 const CaregoryForm = ({handlesubmit ,value,setValue}) => {
   return (
     <>
       <form onSubmit={handlesubmit}>
-      <div style={{  alignItems:'center', display:'flex',justifyContent:'center', flexDirection:'column' }}>
-        <div className="form-group">
+      <div style={{  alignItems:'center', display:'flex',justifyContent:'center' }}>
+        <div className="form-group d-flex">
           <input
             type="text"
             className="form-control"
             placeholder="Enter new Category "
             value={value}
             onChange={(e) => setValue(e.target.value)}
-            //style={{ width: '50%' }}
+            style={{ margin:"5px" }}
           />
         </div>
-        <div style={{ marginTop:'15px' }}>
+        <div >
                 <button type="submit" className="btn btn-primary">
                      Submit
                 </button>
